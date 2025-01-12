@@ -21,9 +21,9 @@ export default function ChatMessage({ chat }) {
       <p
         className={`${
           chat.role === "user"
-            ? "bg-darkenColor/90 flex-grow font-semibold text-primaryColor rounded-lg px-[1rem] py-[.45rem] rounded-br-none order-1"
-            : "text-[1.05rem] ml-[50px] flex-grow max-w-[calc(100% - 51.2px)] bg-grayColor text-darkMode px-[1rem] py-[.45rem] rounded-lg rounded-bl-none"
-        }`}
+            ? "bg-darkenColor/90 flex-grow font-[400] text-primaryColor rounded-lg px-[1rem] py-[.45rem] rounded-br-none order-1"
+            : "text-[1.05rem] ml-[50px] flex-grow font-[400] max-w-[calc(100% - 51.2px)] bg-grayColor text-darkMode px-[1rem] py-[.45rem] rounded-lg rounded-bl-none"
+        } ${chat.text === "Something went wrong !" ? "text-red-600" : ""}`}
       >
         {chat.text}
       </p>

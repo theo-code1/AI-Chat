@@ -13,7 +13,6 @@ export default function ChatForm({
     const userMessage = inputRef.current.value.trim();
     if (!userMessage) return;
     console.log(userMessage);
-
     inputRef.current.value = "";
 
     // Update the chat history with the user message
@@ -27,7 +26,7 @@ export default function ChatForm({
       () =>
         setChatHistory((history) => [
           ...history,
-          { role: "model", text: "thinking..." },
+          { role: "model", text: "Thinking..." },
         ]),
       generateBotResponse([
         ...chatHistory,

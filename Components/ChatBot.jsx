@@ -12,7 +12,7 @@ const ChatBot = ({ handleShowChat }) => {
 
   const generateBotResponse = async (history) => {
     // update History
-    const updateHistory = (text) => {
+    const updateHistory = (text, Error = false) => {
       setChatHistory((prev) => [
         ...prev.filter((msg) => msg.text !== "Thinking..."),
         { role: "model", text },
@@ -51,22 +51,13 @@ const ChatBot = ({ handleShowChat }) => {
         .replace(/\*\*\{.*?}\*\*/g, "")
         .trim();
 
-      // Print the extracted text
-
-      // console.log(
-      //   data.didates[0].content.parts[0].replace(/\*\*(.*?)\*\*/g, "").trim()
-      // );
-
       updateHistory(apiResponseText);
       // const apiResponseText = data.candide
     } catch (error) {
-      setChatHistory((prev) => [
-        ...prev,
-        {
-          role: "model",
-          text: "Something went wrong !",
-        },
-      ]);
+      setChatHistory((prev) => {
+        [...prev, { role: "model", Error: "Something went wrong !" }];
+      });
+
       console.error("Error fetching bot response:", error);
       return [{ role: "model", text: "Sorry, I can't assist with that." }];
     }
@@ -84,7 +75,7 @@ const ChatBot = ({ handleShowChat }) => {
       <div className="header relative flex items-center justify-between w-full px-[1rem] bg-secondaryColor h-[80px] rounded-tr-lg rounded-tl-lg text-primaryColor">
         <div className="chatHeader flex items-center ">
           <Robot className="mr-[1rem] size-[40px]" />
-          <h1 className="text-2xl font-semibold">ChatBot</h1>
+          <h1 className="text-2xl font-semibold">AI Chat</h1>
         </div>
         <BottomArrows
           onClick={handleShowChat}
