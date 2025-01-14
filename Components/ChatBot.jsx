@@ -12,7 +12,7 @@ const ChatBot = ({ handleShowChat }) => {
 
   const generateBotResponse = async (history) => {
     // update History
-    const updateHistory = (text, Error = false) => {
+    const updateHistory = (text = false) => {
       setChatHistory((prev) => [
         ...prev.filter((msg) => msg.text !== "Thinking..."),
         { role: "model", text },
